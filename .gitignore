@@ -1,1 +1,3 @@
 *.pdf
+ui_scripts/
+__pycache__/

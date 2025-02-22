@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>842</width>
+    <height>486</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>QuickSpace Updater</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>:/Images/quickspace.png</normaloff>:/Images/quickspace.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* QLineEdit Styling */
+QLineEdit {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 8px;
+    font-size: 18px;
+    background: white;
+    selection-background-color: #0078D7;
+}
+
+QLineEdit:focus {
+    border: 2px solid #0078D7;
+}
+
+
+
+/* QListWidget Styling */
+QListWidget {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background: white;
+    padding: 5px;
+    font-size: 14px;
+}
+
+/* QListWidget Item Styling */
+QListWidget::item {
+    padding: 8px;
+    border-radius: 5px;
+}
+
+QListWidget::item:selected {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, 
+                                stop:0 #0078D7, stop:1 #00A2E8);
+    color: white;
+}
+
+QListWidget::item:hover {
+    background: #d0e8ff;
+    color: black;
+}
+
+/* Scrollbar Styling */
+QScrollBar:vertical {
+    border: none;
+    background: #f0f0f0;
+    width: 10px;
+    margin: 2px 0;
+    border-radius: 5px;
+}
+
+QScrollBar::handle:vertical {
+    background: #0078D7;
+    min-height: 20px;
+    border-radius: 5px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #005fa3;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    background: none;
+    border: none;
+}
+
+QPushButton {
+    background: #005fa3;
+    border: 2px solid #005fa3;
+    border-radius: 5px;
+	padding: 5px;
+}
+
+QPushButton:hover {
+    background: #004f93;
+}
+
+QPushButton:pressed {
+    background: #005fa3;
+    border: 2px solid #003f70;
+}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLineEdit" name="link_lineedit">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="placeholderText">
+         <string>link</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="update_listwidget_pushbutton">
+        <property name="toolTip">
+         <string>fetch</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="res.qrc">
+          <normaloff>:/Images/imgs/captcha.png</normaloff>:/Images/imgs/captcha.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="download_button">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="toolTip">
+         <string>update</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="res.qrc">
+          <normaloff>:/Images/imgs/download.png</normaloff>:/Images/imgs/download.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QListWidget" name="listWidget">
+      <property name="selectionMode">
+       <enum>QAbstractItemView::NoSelection</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QProgressBar" name="progressBar">
+      <property name="value">
+       <number>24</number>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
+ <connections/>
+</ui>

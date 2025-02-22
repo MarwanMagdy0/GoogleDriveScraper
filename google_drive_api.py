@@ -1,6 +1,13 @@
 import requests
 from bs4 import BeautifulSoup
 
+def is_connected_to_internet():
+    try:
+        if requests.get('https://google.com').ok:
+            return True
+    except:
+        return False
+
 class GoogleDriveAPI:
     @staticmethod
     def list_files(folder_url):
@@ -23,17 +30,27 @@ class GoogleDriveAPI:
             print(f"Failed to fetch the page. Status Code: {response.status_code}")
             return {}
     
-    @staticmethod
     def download_file(file_id, file_name):
         download_url = f"https://drive.google.com/uc?export=download&id={file_id}"
         response = requests.get(download_url, stream=True)
+
         if response.status_code == 200:
+            total_size = int(response.headers.get("content-length", 0))  # Get total file size
+            downloaded_size = 0
+
             with open(file_name, "wb") as file:
                 for chunk in response.iter_content(1024):
-                    file.write(chunk)
-            print(f"Downloaded {file_name}")
+                    if chunk:
+                        file.write(chunk)
+                        downloaded_size += len(chunk)
+
+                        # Yield progress as a percentage
+                        if total_size > 0:
+                            yield int((downloaded_size / total_size) * 100)
+
+            yield 100  # Ensure it reaches 100% at the end
         else:
-            print(f"Failed to download {file_name}. Status Code: {response.status_code}")
+            yield None  # Indicate failure
 
 if __name__ == "__main__":
     folder_url = "https://drive.google.com/drive/folders/1W17L4b31ORQOKgb415XFu2FseSaV_pCB"

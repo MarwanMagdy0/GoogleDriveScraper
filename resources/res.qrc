@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="Images">
+    <file>imgs/download.png</file>
+    <file>imgs/quickspace.png</file>
+    <file>imgs/captcha.png</file>
+  </qresource>
+</RCC>
