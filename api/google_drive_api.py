@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import zipfile, os
 
 def is_connected_to_internet():
     try:
@@ -47,6 +48,16 @@ class GoogleDriveAPI:
                         # Yield progress as a percentage
                         if total_size > 0:
                             yield int((downloaded_size / total_size) * 100)
+            
+            yield 0 # Ensure it reaches 100% at the end
+
+            if zipfile.is_zipfile(file_name):
+                extract_to = os.path.dirname(os.path.abspath(file_name))  # Same folder as the ZIP file
+                print(extract_to)
+                with zipfile.ZipFile(file_name, "r") as zip_ref:
+                    zip_ref.extractall(extract_to)
+                
+                os.remove(file_name)
 
             yield 100  # Ensure it reaches 100% at the end
         else:

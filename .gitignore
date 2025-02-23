@@ -1,3 +1,5 @@
 *.pdf
 ui_scripts/
 __pycache__/
+*.db*
+*.zip
