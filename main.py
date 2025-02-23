@@ -62,11 +62,14 @@ class DownloadPage(UI):
         print(self.new_version_data)
         if not is_connected_to_internet():
             return
+        
         def download_completed():
             self.progressBar.setValue(0)
             self.download_button.setEnabled(False)
             show_info_box("Update completed", "Please restart the application.", QMessageBox.Information)
-            self.stackedWidget.setCurrentIndex(0)    
+            self.stackedWidget.setCurrentIndex(0)
+            QApplication.quit()
+
     
         file_id = list(self.new_version_data.keys())[0]
         file_name = self.new_version_data[file_id]

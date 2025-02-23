@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-import zipfile, os
+import pyzipper, os
 
 def is_connected_to_internet():
     try:
@@ -34,8 +34,13 @@ class GoogleDriveAPI:
     def download_file(file_id, file_name):
         download_url = f"https://drive.google.com/uc?export=download&id={file_id}"
         response = requests.get(download_url, stream=True)
+        content_type = response.headers.get("Content-Type", "").lower()
+        if "text/html" in content_type:
+            download_url = GoogleDriveAPI.generate_download_link(response.text)
+            response = requests.get(download_url, stream=True)
 
         if response.status_code == 200:
+
             total_size = int(response.headers.get("content-length", 0))  # Get total file size
             downloaded_size = 0
 
@@ -51,17 +56,36 @@ class GoogleDriveAPI:
             
             yield 0 # Ensure it reaches 100% at the end
 
-            if zipfile.is_zipfile(file_name):
-                extract_to = os.path.dirname(os.path.abspath(file_name))  # Same folder as the ZIP file
-                print(extract_to)
-                with zipfile.ZipFile(file_name, "r") as zip_ref:
-                    zip_ref.extractall(extract_to)
-                
-                os.remove(file_name)
+            GoogleDriveAPI.extract_zip(file_name)
 
             yield 100  # Ensure it reaches 100% at the end
         else:
             yield None  # Indicate failure
+    
+    @staticmethod
+    def generate_download_link(html_content):
+        soup = BeautifulSoup(html_content, 'html.parser')
+        form = soup.find('form', id='download-form')
+        base_url = form['action']
+        params = {input_tag['name']: input_tag['value'] for input_tag in form.find_all('input', type='hidden')}
+
+        query_string = '&'.join([f"{key}={value}" for key, value in params.items()])
+
+        download_url = f"{base_url}?{query_string}"
+
+        return download_url
+    
+    @staticmethod
+    def extract_zip(file_name):
+        extract_to = os.path.dirname(os.path.abspath(file_name))  # Extract to the same folder
+        print(f"Extracting to: {extract_to}")
+
+        with pyzipper.AESZipFile(file_name, "r") as zip_ref:
+            zip_ref.setpassword(b"(AESZipFile)")  # Set password for extraction
+            zip_ref.extractall(extract_to)  # Extract all files
+
+        print("Extraction completed.")
+        os.remove(file_name)
 
 if __name__ == "__main__":
     folder_url = "https://drive.google.com/drive/folders/1W17L4b31ORQOKgb415XFu2FseSaV_pCB"
