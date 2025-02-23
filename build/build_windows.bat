@@ -5,4 +5,4 @@ nuitka --standalone ^
        --no-debug ^
        main.py ^
        --windows-disable-console ^
-       --windows-icon-from-ico=resource/imgs/quickspace.ico ^
+       --windows-icon-from-ico=resources\imgs\quickspace.ico ^

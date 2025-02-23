@@ -3,3 +3,6 @@ ui_scripts/
 __pycache__/
 *.db*
 *.zip
+*.dist/
+*.build/
+logs/

@@ -14,8 +14,8 @@
    <string>QuickSpace Updater</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>:/Images/quickspace.png</normaloff>:/Images/quickspace.png</iconset>
+   <iconset resource="res.qrc">
+    <normaloff>:/Images/imgs/quickspace.png</normaloff>:/Images/imgs/quickspace.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">/* QLineEdit Styling */
