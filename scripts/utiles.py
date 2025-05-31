@@ -4,26 +4,7 @@ from datetime import datetime
 import traceback
 import logging
 import sys, os
-import sqlite3
-import hashlib
 
-
-conn = sqlite3.connect('database.db')
-cursor = conn.cursor()
-
-class WorkspaceSettingsTable:
-    @staticmethod
-    def is_admin(password):
-        cursor.execute("""
-            SELECT setting_value 
-            FROM workspace_settings 
-            WHERE setting_key = 'admin_password';
-        """)
-        result = cursor.fetchone()
-        
-        if result:
-            return hashlib.sha256(password.encode('utf-8')).hexdigest() == result[0]
-        return None
     
 def show_info_box(info_title, info_content, icon=QMessageBox.Warning):
     msg_box = QMessageBox()
@@ -63,7 +44,3 @@ class Logger:
 os.makedirs("logs", exist_ok=True)
 log_file_name = f"{datetime.now().strftime('%Y-%m-%d')}_app.log"
 Logger.logIntoFile(os.path.join("logs", log_file_name))
-
-
-if __name__ == "__main__":
-    print(WorkspaceSettingsTable.is_admin("admin"))

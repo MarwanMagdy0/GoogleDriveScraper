@@ -120,61 +120,33 @@ QPushButton:pressed {
      </widget>
     </item>
     <item>
-     <widget class="QStackedWidget" name="stackedWidget">
-      <property name="currentIndex">
-       <number>0</number>
+     <widget class="QPushButton" name="download_button">
+      <property name="enabled">
+       <bool>false</bool>
       </property>
-      <widget class="QWidget" name="page">
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item>
-         <widget class="QLineEdit" name="password_lineedit">
-          <property name="echoMode">
-           <enum>QLineEdit::Password</enum>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-          <property name="placeholderText">
-           <string>password</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="page_2">
-       <layout class="QVBoxLayout" name="verticalLayout_3">
-        <item>
-         <widget class="QPushButton" name="download_button">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="toolTip">
-           <string>update</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset resource="res.qrc">
-            <normaloff>:/Images/imgs/download.png</normaloff>:/Images/imgs/download.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>32</width>
-            <height>32</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QProgressBar" name="progressBar">
-          <property name="value">
-           <number>24</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
+      <property name="toolTip">
+       <string>update</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="res.qrc">
+        <normaloff>:/Images/imgs/download.png</normaloff>:/Images/imgs/download.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>32</width>
+        <height>32</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QProgressBar" name="progressBar">
+      <property name="value">
+       <number>24</number>
+      </property>
      </widget>
     </item>
    </layout>

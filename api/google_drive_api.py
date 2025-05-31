@@ -88,7 +88,7 @@ class GoogleDriveAPI:
         os.remove(file_name)
 
 if __name__ == "__main__":
-    folder_url = "https://drive.google.com/drive/folders/1W17L4b31ORQOKgb415XFu2FseSaV_pCB"
+    folder_url = "https://drive.google.com/drive/u/1/folders/1_1nox1OuoaeuF6MdJam1s4Lan84sJu0a"
     files = GoogleDriveAPI.list_files(folder_url)
     
     # Print results

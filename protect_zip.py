@@ -14,4 +14,4 @@ def protect_zip(existing_zip, password):
 
     print(f"Password-protected ZIP saved as: {output_zip}")
 
-protect_zip("/mnt/data/Web/movie_site/v2.zip", "(AESZipFile)")
+protect_zip("a.zip", "(AESZipFile)")
